@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RNCourse",
-    "slug": "RNCourse",
+    "name": "Goal Tracker App",
+    "slug": "Goal Tracker App",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
