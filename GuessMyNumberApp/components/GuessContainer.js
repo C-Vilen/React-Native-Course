@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     guessText: {
+        fontFamily: "OpenSans-Bold",
         fontSize: 36,
         fontWeight: "bold",
         textAlign: "center",
