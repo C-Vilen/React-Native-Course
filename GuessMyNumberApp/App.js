@@ -12,13 +12,14 @@ import GameOverScreen from "./views/GameOverScreen";
 export default function App() {
   const [userNumber, setUserNumber] = useState(undefined);
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessRounds, setGuessRounds] = useState(0);
 
   const [fontsLoaded] = useFonts({
     "OpenSans-Regular": require("./assets/fonts/OpenSans-Regular.ttf"),
     "OpenSans-Bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
-  if(!fontsLoaded) {
+  if (!fontsLoaded) {
     return <AppLoading />;
   }
 
@@ -30,16 +31,28 @@ export default function App() {
   function gameOverHandler() {
     setGameIsOver(true);
   }
-  
+
+  function startNewGameHandler() {
+    setUserNumber(undefined);
+    setGuessRounds(0);
+  }
+
   let screen = <StartGameScreen onSelectedNumber={startGameHandler} />;
   if (userNumber) {
-    screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler}/>;
+    screen = (
+      <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+    );
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen />;
+    screen = (
+      <GameOverScreen
+        numOfRounds={guessRounds}
+        userNumber={userNumber}
+        onStartNewGame={startNewGameHandler}
+      />
+    );
   }
-
 
   return (
     <LinearGradient
@@ -50,9 +63,7 @@ export default function App() {
         resizeMode="cover"
         style={styles.rootContainer}
         imageStyle={styles.backgroundImage}>
-        <SafeAreaView style={styles.rootContainer}>
-          {screen}
-        </SafeAreaView>
+        <SafeAreaView style={styles.rootContainer}>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
@@ -62,7 +73,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
   },
-  backgroundImage:{
+  backgroundImage: {
     opacity: 0.2,
-  }
+  },
 });
