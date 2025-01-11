@@ -27,10 +27,7 @@ function GameScreen({ userNumber, onGameOver }) {
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      Alert.alert("Game Over!", `Your number is ${userNumber}`, [
-        { text: "Okay", style: "cancel" },
-      ]);
-      onGameOver();
+      onGameOver(rounds.length);
       minBoundary = 1;
       maxBoundary = 100;
     }
@@ -108,11 +105,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     fontSize: 18,
     textAlign: "center",
-  },
-  roundText: {
-    fontSize: 18,
-    textAlign: "center",
-    color: Colors.darkYellow,
   },
   buttonsContainer: {
     flexDirection: "row",
