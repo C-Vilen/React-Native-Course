@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native';
-import Colors from '../constants/Colors';
+import { View, Text, StyleSheet } from "react-native";
+import Colors from "../constants/Colors";
 
-function GuessLogItem({roundNumber, guessNumber}) {
+function GuessLogItem({ roundNumber, guessNumber }) {
     return (
         <View style={styles.listItem}>
             <Text style={styles.itemText}>#{roundNumber}</Text>
@@ -34,5 +34,5 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSans-Bold",
         fontSize: 16,
         color: "white",
-    }
+    },
 });

@@ -74,7 +74,9 @@ function GameScreen({ userNumber, onGameOver }) {
     return (
         <View style={styles.inputContainer}>
             <TitleText>Game Screen</TitleText>
-            {currentGuess !== null && <GuessContainer>{currentGuess}</GuessContainer>}
+            {currentGuess !== null && (
+                <GuessContainer>{currentGuess}</GuessContainer>
+            )}
             <Card>
                 <InstructionText style={styles.instructionText}>
                     Is your number lower or higher?

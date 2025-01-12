@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
 function GuessContainer({ children }) {
-  return (
-    <View style={styles.guessContainer}>
-      <Text style={styles.guessText}>{children}</Text>
-    </View>
-  );
+    return (
+        <View style={styles.guessContainer}>
+            <Text style={styles.guessText}>{children}</Text>
+        </View>
+    );
 }
 
 export default GuessContainer;

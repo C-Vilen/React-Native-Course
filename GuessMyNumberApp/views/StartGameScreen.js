@@ -7,56 +7,71 @@ import Card from "../components/Card";
 import InstructionText from "../components/InstructionText";
 
 function StartGameScreen({ onSelectedNumber }) {
-  const [enteredNumber, setEnteredNumber] = useState('');
+    const [enteredNumber, setEnteredNumber] = useState("");
 
-  function numberInputHandler(inputText) {
-    setEnteredNumber(inputText);    
-  }
+    function numberInputHandler(inputText) {
+        setEnteredNumber(inputText);
+    }
 
-  function resetInputHandler() {
-    setEnteredNumber('');
-  }
+    function resetInputHandler() {
+        setEnteredNumber("");
+    }
 
-  function confirmInputHandler() {
-    const chosenNumber = parseInt(enteredNumber);
-    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
-        Alert.alert('Invalid number', 'It must be a number between 1 and 99.', [{text: 'Okay', style: 'destructive', onPress: resetInputHandler}]);
-        return;
-    } 
-    onSelectedNumber(chosenNumber);
-  }
-  
-  return (
-    <View style={styles.rootContainer}>
-        <TitleText>Guess my number</TitleText>
-        <Card>
-            <InstructionText>Enter a number</InstructionText>
-            <TextInput 
-                value={enteredNumber}
-                onChangeText={numberInputHandler}
-                maxLength={2} 
-                keyboardType="number-pad" 
-                style={styles.insertNumberInput} />
-            <View style={styles.buttonsContainer}>
-                <View style={styles.buttonContainer}>
-                <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+    function confirmInputHandler() {
+        const chosenNumber = parseInt(enteredNumber);
+        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+            Alert.alert(
+                "Invalid number",
+                "It must be a number between 1 and 99.",
+                [
+                    {
+                        text: "Okay",
+                        style: "destructive",
+                        onPress: resetInputHandler,
+                    },
+                ]
+            );
+            return;
+        }
+        onSelectedNumber(chosenNumber);
+    }
+
+    return (
+        <View style={styles.rootContainer}>
+            <TitleText>Guess my number</TitleText>
+            <Card>
+                <InstructionText>Enter a number</InstructionText>
+                <TextInput
+                    value={enteredNumber}
+                    onChangeText={numberInputHandler}
+                    maxLength={2}
+                    keyboardType="number-pad"
+                    style={styles.insertNumberInput}
+                />
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={resetInputHandler}>
+                            Reset
+                        </PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={confirmInputHandler}>
+                            Confirm
+                        </PrimaryButton>
+                    </View>
                 </View>
-                <View style={styles.buttonContainer}>
-                <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-                </View>
-            </View>
-        </Card>
-    </View>
-  );
+            </Card>
+        </View>
+    );
 }
 
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-    rootContainer:{
+    rootContainer: {
         flex: 1,
         marginTop: 100,
-        alignItems: 'center'
+        alignItems: "center",
     },
     insertNumberInput: {
         height: 40,
