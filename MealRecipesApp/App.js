@@ -9,13 +9,22 @@ const Stack = createStackNavigator();
 export default function App() {
     return (
         <View style={styles.container}>
-          <StatusBar barStyle={"light-content"} />
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen name="Meal Categories" component={CategoriesView}/>
-              <Stack.Screen name="Meals" component={MealsView}/>
-            </Stack.Navigator>
-          </NavigationContainer>
+            <StatusBar barStyle={"light-content"} />
+            <NavigationContainer>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerStyle: { backgroundColor: "#431a02" },
+                        headerTintColor: "white",
+                        cardStyle: { backgroundColor: "#784924" },
+                    }}>
+                    <Stack.Screen
+                        name="MealCategories"
+                        component={CategoriesView}
+                        options={{ title: "All Categories" }}
+                    />
+                    <Stack.Screen name="Meals" component={MealsView} />
+                </Stack.Navigator>
+            </NavigationContainer>
         </View>
     );
 }
@@ -23,7 +32,5 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#24180f",
-
     },
 });
