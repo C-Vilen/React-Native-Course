@@ -1,13 +1,27 @@
 import { View, Text, Image, StyleSheet, Platform, ScrollView } from "react-native";
+import { useLayoutEffect, useCallback } from "react";
 import { MEALS } from "../data/dummy-data";
 import MealInformation from "../components/MealInformation";
 import Subtitle from "../components/MealViewComponents/Subtitle";
 import List from "../components/MealViewComponents/List";
+import StarIconButton from "../components/MealViewComponents/StarIconButton";
 
-function MealItem({ route }) {
+function MealItem({ route, navigation }) {
     const mealId = route.params.mealId;
 
     const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+    const onHeaderButtonPressed = useCallback(() => {
+        console.log("Favorite button pressed");
+    }, []);
+
+    useLayoutEffect(() => {
+        navigation.setOptions({ 
+            headerRight: () => {
+                return <StarIconButton icon="star" color="white" onPressed={onHeaderButtonPressed}/>
+            }
+         });
+    }, [navigation, onHeaderButtonPressed]);
     
     return (
         <ScrollView>
