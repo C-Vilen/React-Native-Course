@@ -1,6 +1,7 @@
 import { StatusBar, StyleSheet, View } from "react-native";
 import CategoriesView from "./views/CategoriesView";
 import MealsView from "./views/MealsView";
+import MealView from "./views/MealView";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -23,6 +24,7 @@ export default function App() {
                         options={{ title: "All Categories" }}
                     />
                     <Stack.Screen name="Meals" component={MealsView} />
+                    <Stack.Screen name="Meal" component={MealView} />
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

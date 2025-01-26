@@ -6,8 +6,24 @@ import {
     StyleSheet,
     Platform,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import MealInformation from "./MealInformation";
 
-function MealItem({ title, imageURL, duration, complexity, affordability, onPressed }) {
+function MealItem({
+    id,
+    title,
+    imageURL,
+    duration,
+    complexity,
+    affordability,
+}) {
+    const navigation = useNavigation();
+
+    function onPressedHandler() {
+        navigation.navigate("Meal", {
+            mealId: id,
+        });
+    }
     return (
         <View style={styles.mealItem}>
             <Pressable
@@ -16,7 +32,7 @@ function MealItem({ title, imageURL, duration, complexity, affordability, onPres
                     styles.buttonStyle,
                     pressed ? styles.buttonPressed : null,
                 ]}
-                onPress={onPressed}>
+                onPress={onPressedHandler}>
                 <View style={styles.innerContainer}>
                     <View>
                         <Image
@@ -25,15 +41,11 @@ function MealItem({ title, imageURL, duration, complexity, affordability, onPres
                         />
                         <Text style={styles.title}>{title}</Text>
                     </View>
-                    <View style={styles.details}>
-                        <Text style={styles.detailItem}>{duration}m</Text>
-                        <Text style={styles.detailItem}>
-                            {complexity.toUpperCase()}
-                        </Text>
-                        <Text style={styles.detailItem}>
-                            {affordability.toUpperCase()}
-                        </Text>
-                    </View>
+                    <MealInformation
+                        duration={duration}
+                        complexity={complexity}
+                        affordability={affordability}
+                    />
                 </View>
             </Pressable>
         </View>
@@ -73,15 +85,5 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         margin: 8,
-    },
-    details: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 8,
-    },
-    detailItem: {
-        marginHorizontal: 4,
-        fontSize: 12,
     },
 });
