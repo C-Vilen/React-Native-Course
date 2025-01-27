@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, Platform, ScrollView } from "react-native";
+import { View, Text, Image, StyleSheet, Platform, ScrollView, Alert } from "react-native";
 import { useLayoutEffect, useCallback } from "react";
 import { MEALS } from "../data/dummy-data";
 import MealInformation from "../components/MealInformation";
@@ -12,7 +12,7 @@ function MealItem({ route, navigation }) {
     const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
     const onHeaderButtonPressed = useCallback(() => {
-        console.log("Favorite button pressed");
+        Alert.alert("Work in progress", "This feature is not available yet.");
     }, []);
 
     useLayoutEffect(() => {
