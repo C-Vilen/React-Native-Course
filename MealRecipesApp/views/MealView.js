@@ -11,6 +11,8 @@ function MealItem({ route, navigation }) {
 
     const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
+    const title = selectedMeal.title;
+
     const onHeaderButtonPressed = useCallback(() => {
         Alert.alert("Work in progress", "This feature is not available yet.");
     }, []);
@@ -30,7 +32,7 @@ function MealItem({ route, navigation }) {
                     <Image style={styles.image} source={{uri: selectedMeal.imageUrl}} />
                 </View>
             </View>
-            <Text style={styles.title}>This is meal id: {mealId}</Text>
+            <Text style={styles.title}>{title}</Text>
             <MealInformation 
                 duration={selectedMeal.duration}
                 complexity={selectedMeal.complexity}
@@ -39,9 +41,9 @@ function MealItem({ route, navigation }) {
             <View style={styles.listOuterCointaner}>
                 <View style={styles.listCointaner}>
                     <Subtitle title="Ingredients" />
-                    <List data={selectedMeal.ingredients}/>
+                    <List data={selectedMeal.ingredients} incrementing={false}/>
                     <Subtitle title="Steps" />
-                    <List data={selectedMeal.steps}/>
+                    <List data={selectedMeal.steps} incrementing={true}/>
                 </View>
             </View>
         </ScrollView>
